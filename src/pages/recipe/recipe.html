@@ -1,18 +1,45 @@
-<!--
-  Generated template for the RecipePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
+<ion-header>  
   <ion-navbar>
-    <ion-title>recipe</ion-title>
+    <ion-title>{{recipe.title}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
+<ion-grid>
+  <ion-row>
+    <ion-col text-center>
+      <h2>{{recipe.title}}</h2>
+      <div class="subtitle" >{{recipe.difficulty}}</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-center>
+      <p>{{recipe.description}}</p>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <ion-item *ngFor="let ingredient of recipe.ingredients">
+          {{ingredient.name}}
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item (click)="onAddIngredients()" block clear>
+        Add Ingredient to Shopping list
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item block outline (click)="onEditIngredients()">Edit Recipe</ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item block outline (click)="onDeleteRecipe()" color="danger">Delete Recipe</ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

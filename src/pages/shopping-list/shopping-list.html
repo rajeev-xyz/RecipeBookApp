@@ -1,12 +1,45 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>Shopping list</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+<form #itemForm="ngForm" (ngSubmit)="onAddItem(itemForm)">
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Name</ion-label>
+      <ion-input 
+      type="text" 
+      name="ingredientName" 
+      placeholder="Eggs"
+      required 
+      ngModel></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Amount</ion-label>
+      <ion-input 
+      type="Number" 
+      name="amount" 
+      placeholder="2"
+      required
+      ngModel></ion-input>
+    </ion-item>
+  </ion-list>
+  <button [disabled]="!itemForm.valid" ion-button type="submit" block>Add Item</button>
+</form>
+<ion-list>
+  <ion-item-sliding *ngFor="let item of itemList; let i= index">
+  <ion-item>
+    {{item.name}} - ({{item.amount}})
+  </ion-item>
+  <ion-item-options side="right">
+      <button ion-button color="danger" (click)="removeItem(i)">
+        <ion-icon name="trash"></ion-icon>
+        Remove
+      </button>
+  </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
 
 </ion-content>
